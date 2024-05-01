@@ -4,9 +4,10 @@
 int fps = 16;
 // 誕生率の逆数
 int birthRate = 8;
+
 // 列数と行数
 int cols, rows;
-// セルの幅
+// 1セルの幅
 int resolution = 4;
 // 配列を定義
 int[][] grid;
@@ -43,29 +44,28 @@ int countNeighbors(int x, int y) {
 }
 
 // 新しいグリッドを計算
-int[][] nextGrid () {
-    int next[][] = new int[cols][rows];
+int[][] nextGrid() {
+    int newGrid[][] = new int[cols][rows];
     // 次の世代を計算
     for (int i = 0; i < cols; i++) {
         for (int j = 0; j < rows; j++) {
             int state = grid[i][j];
-            
             // 近傍のセルを数える
             int neighbors = countNeighbors(i, j);
             
             // ゲームのルールを適用
             if (state == 0 && neighbors == 3) {
                 // セルを生に設定
-                next[i][j] = 1;
+                newGrid[i][j] = 1;
             } else if (state == 1 && (neighbors < 2 || 3 < neighbors)) {
                 // セルを死に設定
-                next[i][j] = 0;
+                newGrid[i][j] = 0;
             } else {
-                next[i][j] = state;
+                newGrid[i][j] = state;
             }
         }
     }
-    return next;
+    return newGrid;
 }
 
 void setup() {
@@ -91,13 +91,14 @@ void draw() {
     grid = nextGrid();
 
     if (keyPressed) {
+        // スペースキーが押されている場合
         if (key == ' ') {
             // グリッドをリセット
             resetGrid();
         }
     }
 
-    // グリッドを表示
+    // グリッドを描画
     for (int i = 0; i < cols; i++) {
         for (int j = 0; j < rows; j++) {
             float x = i * resolution;
