@@ -1,5 +1,7 @@
 // life game
 
+// フレームレート
+int fps = 16;
 // 誕生率の逆数
 int birthRate = 8;
 // 列数と行数
@@ -68,7 +70,7 @@ int[][] nextGrid () {
 
 void setup() {
     size(1200, 1000);
-    frameRate(16);
+    frameRate(fps);
 
     // 列数を計算
     cols = width / resolution;
