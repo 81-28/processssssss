@@ -1,4 +1,5 @@
-//配列テスト
+// 配列判定テスト
+
 int n = 3;
 int nary = n - 1;
 int panels = 9;

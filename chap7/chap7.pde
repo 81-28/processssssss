@@ -1,3 +1,5 @@
+// マウスの位置に円が追従するプログラム
+
 void setup() {
     size(800, 800);
     background(255);
@@ -21,7 +23,7 @@ void draw() {
         for (int x = 0; x < n; x++) {
             for (int y = 0; y < n; y++) {
                 brightness = (1000 - sq(xn - x) - sq(yn - y)) / 10;
-                fill(45, 90, brightness);
+                fill(60, 90, brightness);
                 rect(x * boxW, y * boxH, boxW, boxH);
             }
         }

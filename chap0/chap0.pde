@@ -1,4 +1,7 @@
-//processing実行: CTRL + SHIFT + B
+// 実行テスト
+
+// processing実行: CTRL + SHIFT + B
+// ↑ Processing Languageの機能
 
 // プログラム開始時に一度だけ実行される処理
 void setup() {

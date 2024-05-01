@@ -1,3 +1,5 @@
+// polka dots
+
 int hue = 0;
 
 void setup()

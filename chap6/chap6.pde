@@ -1,3 +1,5 @@
+// 秒数によって色と図形を変える
+
 int NUM = second();
 
 int RED = #ff0000;
