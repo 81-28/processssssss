@@ -1,6 +1,6 @@
 // life game
 
-// 誕生率
+// 誕生率の逆数
 int birthRate = 8;
 // 列数と行数
 int cols, rows;
@@ -25,7 +25,7 @@ void resetGrid() {
 }
 
 // 近傍のセルを数える
-int countNeighbors(int[][] grid, int x, int y) {
+int countNeighbors(int x, int y) {
     int sum = 0;
     
     for (int i = -1; i <= 1; i++) {
@@ -41,7 +41,7 @@ int countNeighbors(int[][] grid, int x, int y) {
 }
 
 // 新しいグリッドを計算
-int[][] nextGrid (int[][] grid) {
+int[][] nextGrid () {
     int next[][] = new int[cols][rows];
     // 次の世代を計算
     for (int i = 0; i < cols; i++) {
@@ -49,7 +49,7 @@ int[][] nextGrid (int[][] grid) {
             int state = grid[i][j];
             
             // 近傍のセルを数える
-            int neighbors = countNeighbors(grid, i, j);
+            int neighbors = countNeighbors(i, j);
             
             // ゲームのルールを適用
             if (state == 0 && neighbors == 3) {
@@ -65,7 +65,6 @@ int[][] nextGrid (int[][] grid) {
     }
     return next;
 }
-
 
 void setup() {
     size(1200, 1000);
@@ -87,7 +86,7 @@ void draw() {
     background(255);
 
     // グリッドを更新
-    grid = nextGrid(grid);
+    grid = nextGrid();
 
     if (keyPressed) {
         if (key == ' ') {
