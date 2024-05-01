@@ -3,7 +3,7 @@
 // フレームレート
 int fps = 16;
 // 誕生率の逆数
-int birthRate = 8;
+int birthRate = 12;
 
 // 列数と行数
 int cols, rows;
@@ -87,12 +87,20 @@ void draw() {
     // 背景を白に設定
     background(255);
 
-    // グリッドを更新
-    grid = nextGrid();
-
+    boolean update = true;
     if (keyPressed) {
         // スペースキーが押されている場合
         if (key == ' ') {
+            update = false;
+        }
+    }
+    if (update) {   
+        // グリッドを更新
+        grid = nextGrid();
+    }
+
+    if (keyPressed) {
+        if (key == 'r') {
             // グリッドをリセット
             resetGrid();
         }
