@@ -1,7 +1,7 @@
 // life game
 
 // フレームレート
-int fps = 16;
+int fps = 60;
 // 誕生率の逆数
 int birthRate = 12;
 

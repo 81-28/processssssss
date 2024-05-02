@@ -1,7 +1,7 @@
 // life game_2
 
 // フレームレート
-int fps = 16;
+int fps = 60;
 // 誕生率の逆数
 int birthRate = 12;
 
@@ -158,6 +158,7 @@ void draw() {
                 grid[col][row] = 0;
             }
         }
+        update = true;
     }
 
     // グリッドを描画
