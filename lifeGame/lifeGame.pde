@@ -93,17 +93,16 @@ void draw() {
         if (key == ' ') {
             update = false;
         }
+        // rキーが押されている場合
+        if (key == 'r') {
+            update = false;
+            // グリッドをリセット
+            resetGrid();
+        }
     }
     if (update) {   
         // グリッドを更新
         grid = nextGrid();
-    }
-
-    if (keyPressed) {
-        if (key == 'r') {
-            // グリッドをリセット
-            resetGrid();
-        }
     }
 
     // グリッドを描画
