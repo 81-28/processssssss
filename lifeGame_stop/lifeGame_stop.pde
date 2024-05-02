@@ -1,4 +1,4 @@
-// life game
+// life game_2
 
 // フレームレート
 int fps = 16;
@@ -11,6 +11,9 @@ int cols, rows;
 int resolution = 4;
 // 配列を定義
 int[][] grid;
+int[][][] pastGrids;
+// グリッドを更新するかどうか
+boolean update = true;
 // 世代数
 int gen = 0;
 
@@ -28,6 +31,7 @@ void resetGrid() {
         }
     }
     gen = 0;
+    update = true;
 }
 
 // 近傍のセルを数える
@@ -72,6 +76,19 @@ int[][] nextGrid() {
     return newGrid;
 }
 
+// 2つの2次元配列が等しいかどうかをチェックする関数
+boolean arraysEqual(int[][] arr1, int[][] arr2) {
+    for (int i = 0; i < arr1.length; i++) {
+        for (int j = 0; j < arr1[i].length; j++) {
+            if (arr1[i][j] != arr2[i][j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+
 void setup() {
     size(1200, 1000);
     frameRate(fps);
@@ -82,6 +99,7 @@ void setup() {
     rows = height / resolution;
     // 配列を初期化
     grid = new int[cols][rows];
+    pastGrids = new int[2][cols][rows];
     
     // グリッドをリセット
     resetGrid();
@@ -93,23 +111,35 @@ void setup() {
 void draw() {
     // 背景を白に設定
     background(255);
-    
-    boolean update = true;
+
+    // このフレームでキーが押されたかどうか
+    boolean nowUpdate = true;
     if (keyPressed) {
         // スペースキーが押されている場合
         if (key == ' ') {
-            update = false;
+            nowUpdate = false;
         }
         // rキーが押されている場合
         if (key == 'r') {
-            update = false;
+            nowUpdate = false;
             // グリッドをリセット
             resetGrid();
         }
     }
-    if (update) {   
-        // グリッドを更新
+    // グリッドを更新
+    if (update && nowUpdate) {
+        // 過去のグリッドを保存
+        if (gen == 0) {
+            pastGrids[0] = grid;
+        } else {
+            pastGrids[1] = pastGrids[0];
+            pastGrids[0] = grid;
+        }
         grid = nextGrid();
+        // グリッドが変化しない場合は更新を停止
+        if (arraysEqual(grid, pastGrids[1])) {
+            update = false;
+        }
     }
 
     // グリッドを描画
