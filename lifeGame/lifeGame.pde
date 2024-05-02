@@ -8,9 +8,11 @@ int birthRate = 12;
 // 列数と行数
 int cols, rows;
 // 1セルの幅
-int resolution = 4;
+int resolution = 20;
 // 配列を定義
 int[][] grid;
+// 世代数
+int gen = 0;
 
 // グリッドをリセット
 void resetGrid() {
@@ -25,6 +27,7 @@ void resetGrid() {
             }
         }
     }
+    gen = 0;
 }
 
 // 近傍のセルを数える
@@ -65,6 +68,7 @@ int[][] nextGrid() {
             }
         }
     }
+    gen++;
     return newGrid;
 }
 
@@ -81,6 +85,9 @@ void setup() {
     
     // グリッドをリセット
     resetGrid();
+    
+    // テキストのサイズを設定
+    textSize(32);
 }
 
 void draw() {
@@ -119,4 +126,8 @@ void draw() {
             }
         }
     }
+    // 文字色を灰色に設定
+    fill(127);
+    // 現在の世代数を表示
+    text("Generation: " + gen, 10, 30);
 }
