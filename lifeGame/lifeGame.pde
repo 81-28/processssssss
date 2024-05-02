@@ -8,7 +8,7 @@ int birthRate = 12;
 // 列数と行数
 int cols, rows;
 // 1セルの幅
-int resolution = 20;
+int resolution = 4;
 // 配列を定義
 int[][] grid;
 // 世代数
