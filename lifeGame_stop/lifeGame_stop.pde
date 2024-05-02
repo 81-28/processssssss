@@ -150,12 +150,12 @@ void draw() {
 
         // インデックスがグリッドの範囲内にあることを確認
         if (0 <= col && col < cols && 0 <= row && row < rows) {
-            if (grid[col][row] == 1) {
-                // セルを死に設定
-                grid[col][row] = 0;
-            } else {
-                // セルを生に設定
+            if (mouseButton == LEFT) {
+                // 左クリックでセルを生に設定
                 grid[col][row] = 1;
+            } else if (mouseButton == RIGHT) {
+                // 右クリックでセルを死に設定
+                grid[col][row] = 0;
             }
         }
     }
