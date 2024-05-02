@@ -142,6 +142,24 @@ void draw() {
         }
     }
 
+    // マウスの位置のセルを切り替える
+    if (mousePressed) {
+        // マウスの位置をセルのインデックスに変換
+        int col = mouseX / resolution;
+        int row = mouseY / resolution;
+
+        // インデックスがグリッドの範囲内にあることを確認
+        if (0 <= col && col < cols && 0 <= row && row < rows) {
+            if (grid[col][row] == 1) {
+                // セルを死に設定
+                grid[col][row] = 0;
+            } else {
+                // セルを生に設定
+                grid[col][row] = 1;
+            }
+        }
+    }
+
     // グリッドを描画
     for (int i = 0; i < cols; i++) {
         for (int j = 0; j < rows; j++) {
